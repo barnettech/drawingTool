@@ -5,13 +5,13 @@ $( document ).ready(function() {
   var c1 = document.getElementById("myCanvas1");
   var ctx = c1.getContext("2d");
   ctx.beginPath();
-  ctx.arc(95,50,40,0,2*Math.PI);
+  ctx.arc(95,100,40,0,2*Math.PI);
   ctx.stroke();
 
   // Draw a square.
   var c2 = document.getElementById("myCanvas2");
   var ctx = c2.getContext("2d");
-  ctx.rect(20, 20, 100, 100);
+  ctx.rect(50, 50, 100, 100);
   ctx.stroke();
 
   // Draw a line.
