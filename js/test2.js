@@ -162,9 +162,15 @@ function erase() {
       ctx.clearRect(boxes[currObj].w, boxes[currObj].h, boxes[currObj].x, boxes[currObj].y);
     }
     else if(boxes[currObj].type == 'circle') {
-       console.log(boxes[currObj].w);
        ctx.clearRect(boxes[currObj].w-225, boxes[currObj].h-225, boxes[currObj].w*3, boxes[currObj].w*3);
 
+       /*ctx.beginPath();
+       ctx.arc(boxes[currObj].w, boxes[currObj].h, Math.abs(boxes[currObj].h-boxes[currObj].w), 5, 44 * Math.PI);
+       ctx.fillStyle = 'white';
+       ctx.lineWidth = 10;
+       ctx.strokeStyle = 'white';
+       ctx.fill();
+       ctx.stroke();*/
     }
     else if(boxes[currObj].type == 'lines') {
       ctx.beginPath();
@@ -216,6 +222,7 @@ function findxy(res, e, drawingType) {
             prevY = currY;
             currX = e.clientX - canvas.offsetLeft;
             currY = e.clientY - canvas.offsetTop;
+            currObj = currObj + 1;
             draw();
         }
     }
