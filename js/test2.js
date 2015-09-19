@@ -21,14 +21,14 @@ $( document ).ready(function() {
   var c1 = document.getElementById("myCanvas1");
   var ctx = c1.getContext("2d");
   ctx.beginPath();
-  ctx.arc(95,100,40,0,2*Math.PI);
+  ctx.arc(70,75,50,0,2*Math.PI);
   ctx.strokeStyle = '#337AB7';
   ctx.stroke();
 
   // Draw a square.
   var c2 = document.getElementById("myCanvas2");
   var ctx = c2.getContext("2d");
-  ctx.rect(50, 50, 100, 100);
+  ctx.rect(25, 30, 100, 100);
   ctx.strokeStyle = '#337AB7';
   ctx.stroke();
 
@@ -36,8 +36,8 @@ $( document ).ready(function() {
   var c3 = document.getElementById("myCanvas3");
   var ctx = c3.getContext("2d");
   ctx.beginPath();
-  ctx.moveTo(30, 100);
-  ctx.lineTo(170, 100);
+  ctx.moveTo(30, 70);
+  ctx.lineTo(120, 70);
   ctx.strokeStyle = '#337AB7';
   ctx.stroke();
 

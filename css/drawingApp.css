@@ -1,5 +1,5 @@
 .sidebar-left {
-  height: 1000px;
+  height: 700px;
   width: 200px;
   float: left;
 }
@@ -12,10 +12,10 @@
 }
 
 .myCanvasFreehandDraw {
-  height: 200px;
-  width: 202px;
-  padding-top: 50px;
-  padding-left: 50px;
+  height: 150px;
+  width: 152px;
+  padding-top: 30px;
+  padding-left: 30px;
   border: 1px solid #d3d3d3;
 }
 
