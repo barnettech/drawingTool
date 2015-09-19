@@ -64,3 +64,8 @@
 .eraser {
   clear: left;
 }
+#clr {
+  margin-top: 15px;
+  clear: both;
+  float: left;
+}

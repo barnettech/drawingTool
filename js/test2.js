@@ -161,7 +161,6 @@ function drawCircle() {
 
 
 function erase() {
-    console.log(currObj);
     if(boxes[currObj].type == 'rectangle') {
       ctx.clearRect(boxes[currObj].w, boxes[currObj].h, boxes[currObj].x, boxes[currObj].y);
     }
@@ -181,7 +180,7 @@ function erase() {
       ctx.moveTo(boxes[currObj].w, boxes[currObj].h);
       ctx.lineTo(boxes[currObj].x, boxes[currObj].y);
       ctx.strokeStyle = 'white';
-      ctx.lineWidth = y*2;
+      ctx.lineWidth = y*12;
       ctx.stroke();
       ctx.closePath();
     }
@@ -220,12 +219,12 @@ function redo() {
   }
 }
 
-function save() {
+/*function save() {
     document.getElementById("canvasimg").style.border = "2px solid";
     var dataURL = canvas.toDataURL();
     document.getElementById("canvasimg").src = dataURL;
     document.getElementById("canvasimg").style.display = "inline";
-}
+}*/
 
 function findxy(res, e, drawingType) {
   if(drawingType == 'myCanvas4') {
