@@ -150,7 +150,8 @@ function drawCircle() {
   cir.h = prevY;
   cir.type = 'circle';
   boxes[currObj] = cir;
-
+  console.log(prevX + ' ,' + prevY + ' ,' + currX + ' ,' + currY);
+  
   ctx.beginPath();
   ctx.arc(prevX, prevY, Math.abs(prevY-currY), 5, 44 * Math.PI);
   ctx.fillStyle = theColor; 
@@ -198,11 +199,9 @@ function redo() {
   }
   else if(boxes[currObj].type == 'circle') {
     ctx.beginPath();
-    ctx.arc(boxes[currObj].w, boxes[currObj].h, Math.abs(boxes[currObj].h-boxes[currObj].w), 5, 44 * Math.PI);
-    ctx.fillStyle = 'white';
-    ctx.lineWidth = 10;
-    ctx.fillStyle = theColor;
-    ctx.strokeStyle = theColor;
+    console.log(boxes[currObj]);
+    ctx.arc(boxes[currObj].w, boxes[currObj].h, Math.abs(boxes[currObj].h - boxes[currObj].y), 5, 44 * Math.PI);
+    ctx.fillStyle = theColor; 
     ctx.fill();
     ctx.stroke();
   }
