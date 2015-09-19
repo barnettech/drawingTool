@@ -108,6 +108,18 @@ function drawSquare() {
   ctx.fillRect(prevX, prevY, currX, currY);
 }
 
+function drawCircle() {
+  ctx.beginPath();
+  //ctx.arc(prevX, prevY, 0, 70, 2 * Math.PI);
+  ctx.arc(prevX, prevY, 90, 5, 44 * Math.PI);
+  ctx.stroke();
+}
+
+function drawLine() {
+
+}
+
+
 function erase() {
     ctx.clearRect(0, 0, w, h);
     document.getElementById("canvasimg").style.display = "none";
@@ -151,6 +163,25 @@ function findxy(res, e, drawingType) {
         }
     }
   }
+  if(drawingType == 'myCanvas1') {
+    if (res == 'down') {
+      prevX = e.clientX - canvas.offsetLeft;
+      prevY = e.clientY - canvas.offsetTop;
+      drag = true;
+    }
+    if (res == 'up' || res == "out") {
+      drag = false;
+    }
+    if (res == 'move') {
+      if (drag) {
+        currX = e.clientX - canvas.offsetLeft;
+        currY = e.clientY - canvas.offsetTop;
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        drawCircle();
+      }
+    }
+  }
+  
   if(drawingType == 'myCanvas2') {
     if (res == 'down') {
       prevX = e.clientX - canvas.offsetLeft;
