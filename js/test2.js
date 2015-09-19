@@ -44,6 +44,7 @@ $( document ).ready(function() {
 
   $(".myCanvas").click(function() {
     drawingType = $(this).attr('id');
+    console.log(drawingType);
     if(drawingType == 'myCanvasTrash') {
       erase();
     }
@@ -100,6 +101,14 @@ function color(obj) {
 }
 
 function draw() {
+    var line = new Shape;
+    line.x = currX;
+    line.y = currY;
+    line.w = prevX; 
+    line.h = prevY;
+    line.type = 'lines';
+    boxes[currObj] = line;
+
     ctx.beginPath();
     ctx.moveTo(prevX, prevY);
     ctx.lineTo(currX, currY);
@@ -146,10 +155,6 @@ function drawCircle() {
   ctx.stroke();
 }
 
-function drawLine() {
-
-}
-
 
 function erase() {
     console.log(currObj);
@@ -161,6 +166,16 @@ function erase() {
        ctx.clearRect(boxes[currObj].w-225, boxes[currObj].h-225, boxes[currObj].w*3, boxes[currObj].w*3);
 
     }
+    else if(boxes[currObj].type == 'lines') {
+      ctx.beginPath();
+      ctx.moveTo(boxes[currObj].w, boxes[currObj].h);
+      ctx.lineTo(boxes[currObj].x, boxes[currObj].y);
+      ctx.strokeStyle = 'white';
+      ctx.lineWidth = y*2;
+      ctx.stroke();
+      ctx.closePath();
+    }
+
     if(currObj != 1) {
       currObj = currObj - 1;
     }
@@ -257,6 +272,39 @@ function findxy(res, e, drawingType) {
       }
     }
   }
+
+  if(drawingType == 'myCanvas3') {
+    if (res == 'down') {
+        prevX = currX;
+        prevY = currY;
+        currX = e.clientX - canvas.offsetLeft;
+        currY = e.clientY - canvas.offsetTop;
+        currObj = currObj + 1;
+        flag = true;
+        dot_flag = true;
+        if (dot_flag) {
+            ctx.beginPath();
+            ctx.fillStyle = x;
+            ctx.fillRect(currX, currY, 2, 2);
+            ctx.closePath();
+            dot_flag = false;
+        }
+    }
+    if (res == 'up') {
+        flag = true;
+         if (flag) {
+            prevX = currX;
+            prevY = currY;
+            currX = e.clientX - canvas.offsetLeft;
+            currY = e.clientY - canvas.offsetTop;
+            draw();
+        }
+    }
+    if (res == 'move') {
+      flag = false;       
+    }
+  }
+
 }
 
 function findxyShape(res, e) {
