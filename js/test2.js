@@ -109,27 +109,36 @@ function draw() {
     ctx.closePath();
 }
 
-function Box() {
+function Shape() {
   this.x = 0;
   this.y = 0;
-  this.w = 1; // default width and height?
+  this.w = 1;
   this.h = 1;
+  this.type = 'rectangle';
   this.fill = '#444444';
 }
 
 function drawSquare() {
-  var rect = new Box;
+  var rect = new Shape;
   rect.x = currX;
   rect.y = currY;
   rect.w = prevX; 
   rect.h = prevY;
-  //rect.fill = fill;
+  rect.type = 'rectangle';
   ctx.fillStyle = theColor; 
   boxes[currObj] = rect;
   ctx.fillRect(prevX, prevY, currX, currY);
 }
 
 function drawCircle() {
+  var cir = new Shape;
+  cir.x = currX;
+  cir.y = currY;
+  cir.w = prevX; 
+  cir.h = prevY;
+  cir.type = 'circle';
+  boxes[currObj] = cir;
+
   ctx.beginPath();
   ctx.arc(prevX, prevY, Math.abs(prevY-currY), 5, 44 * Math.PI);
   ctx.fillStyle = theColor; 
@@ -143,8 +152,16 @@ function drawLine() {
 
 
 function erase() {
-    ctx.clearRect(boxes[currObj].w, boxes[currObj].h, boxes[currObj].x, boxes[currObj].y);
-    if(currObj !=0) {
+    console.log(currObj);
+    if(boxes[currObj].type == 'rectangle') {
+      ctx.clearRect(boxes[currObj].w, boxes[currObj].h, boxes[currObj].x, boxes[currObj].y);
+    }
+    else if(boxes[currObj].type == 'circle') {
+       console.log(boxes[currObj].w);
+       ctx.clearRect(boxes[currObj].w-225, boxes[currObj].h-225, boxes[currObj].w*3, boxes[currObj].w*3);
+
+    }
+    if(currObj != 1) {
       currObj = currObj - 1;
     }
 
@@ -206,6 +223,7 @@ function findxy(res, e, drawingType) {
     if (res == 'down') {
       prevX = e.clientX - canvas.offsetLeft;
       prevY = e.clientY - canvas.offsetTop;
+      currObj = currObj + 1;
       drag = true;
     }
     if (res == 'up' || res == "out") {
