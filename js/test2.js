@@ -6,6 +6,7 @@ var canvas, ctx, flag = false,
     drag = false,
     rect = {},
     drawingType,
+    boxes = [],
     dot_flag = false;
 
 
@@ -111,7 +112,7 @@ function drawSquare() {
 function drawCircle() {
   ctx.beginPath();
   //ctx.arc(prevX, prevY, 0, 70, 2 * Math.PI);
-  ctx.arc(prevX, prevY, 90, 5, 44 * Math.PI);
+  ctx.arc(prevX, prevY, Math.abs(prevY-currY), 5, 44 * Math.PI);
   ctx.stroke();
 }
 
@@ -163,6 +164,20 @@ function findxy(res, e, drawingType) {
         }
     }
   }
+
+  if(drawingType == 'myCanvas0') {
+    if (res == 'down') {
+      drag = true;
+    }
+    if (res == 'up' || res == "out") {
+      drag = false;
+    }
+    if (res == 'move') {
+      if (drag) {
+      }
+    }
+  }
+
   if(drawingType == 'myCanvas1') {
     if (res == 'down') {
       prevX = e.clientX - canvas.offsetLeft;
@@ -176,7 +191,7 @@ function findxy(res, e, drawingType) {
       if (drag) {
         currX = e.clientX - canvas.offsetLeft;
         currY = e.clientY - canvas.offsetTop;
-        ctx.clearRect(0,0,canvas.width,canvas.height);
+        //ctx.clearRect(0,0,canvas.width,canvas.height);
         drawCircle();
       }
     }
@@ -195,7 +210,7 @@ function findxy(res, e, drawingType) {
       if (drag) {
         currX = e.clientX - canvas.offsetLeft;
         currY = e.clientY - canvas.offsetTop;
-        ctx.clearRect(0,0,canvas.width,canvas.height);
+        //ctx.clearRect(0,0,canvas.width,canvas.height);
         drawSquare();
       }
     }
@@ -215,7 +230,7 @@ function findxyShape(res, e) {
       if (drag) {
         currX = e.clientX - canvas.offsetLeft;
         currY = e.clientY - canvas.offsetTop;
-        ctx.clearRect(0,0,canvas.width,canvas.height);
+        //ctx.clearRect(0,0,canvas.width,canvas.height);
         drawSquare();
       }
     }
