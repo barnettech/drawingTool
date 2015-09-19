@@ -3,7 +3,11 @@ var canvas, ctx, flag = false,
     currX = 0,
     prevY = 0,
     currY = 0,
+    drag = false,
+    rect = {},
+    drawingType,
     dot_flag = false;
+
 
 var x = "black",
     y = 2;
@@ -36,7 +40,7 @@ $( document ).ready(function() {
   ctx.stroke();
 
   $(".myCanvas").click(function() {
-    var drawingType = $(this).attr('id');
+    drawingType = $(this).attr('id');
     console.log(drawingType);
   });
 });
@@ -48,16 +52,16 @@ function init() {
     h = canvas.height;
 
     canvas.addEventListener("mousemove", function (e) {
-        findxy('move', e)
+        findxy('move', e, drawingType)
     }, false);
     canvas.addEventListener("mousedown", function (e) {
-        findxy('down', e)
+        findxy('down', e, drawingType)
     }, false);
     canvas.addEventListener("mouseup", function (e) {
-        findxy('up', e)
+        findxy('up', e, drawingType)
     }, false);
     canvas.addEventListener("mouseout", function (e) {
-        findxy('out', e)
+        findxy('out', e, drawingType)
     }, false);
 }
 
@@ -100,6 +104,10 @@ function draw() {
     ctx.closePath();
 }
 
+function drawSquare() {
+  ctx.fillRect(prevX, prevY, currX, currY);
+}
+
 function erase() {
     ctx.clearRect(0, 0, w, h);
     document.getElementById("canvasimg").style.display = "none";
@@ -112,7 +120,8 @@ function save() {
     document.getElementById("canvasimg").style.display = "inline";
 }
 
-function findxy(res, e) {
+function findxy(res, e, drawingType) {
+  if(drawingType == 'myCanvas4') {
     if (res == 'down') {
         prevX = currX;
         prevY = currY;
@@ -140,5 +149,43 @@ function findxy(res, e) {
             currY = e.clientY - canvas.offsetTop;
             draw();
         }
+    }
+  }
+  if(drawingType == 'myCanvas2') {
+    if (res == 'down') {
+      prevX = e.clientX - canvas.offsetLeft;
+      prevY = e.clientY - canvas.offsetTop;
+      drag = true;
+    }
+    if (res == 'up' || res == "out") {
+      drag = false;
+    }
+    if (res == 'move') {
+      if (drag) {
+        currX = e.clientX - canvas.offsetLeft;
+        currY = e.clientY - canvas.offsetTop;
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        drawSquare();
+      }
+    }
+  }
+}
+
+function findxyShape(res, e) {
+    if (res == 'down') {
+      prevX = e.clientX - canvas.offsetLeft;
+      prevY = e.clientY - canvas.offsetTop;
+      drag = true;
+    }
+    if (res == 'up' || res == "out") {
+      drag = false;
+    }
+    if (res == 'move') {
+      if (drag) {
+        currX = e.clientX - canvas.offsetLeft;
+        currY = e.clientY - canvas.offsetTop;
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        drawSquare();
+      }
     }
 }
