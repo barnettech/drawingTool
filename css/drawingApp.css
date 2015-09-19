@@ -6,20 +6,23 @@
 
 .myCanvas {
   float: left;
+  border: 1px solid #d3d3d3;
 }
 #myCanvas2 {
 }
 
 .myCanvasFreehandDraw {
   height: 200px;
-  width: 200px;
+  width: 202px;
   padding-top: 50px;
   padding-left: 50px;
-  border-style: solid;
-  border-with: medium;
-
+  border: 1px solid #d3d3d3;
 }
 
 .glyphicon-pencil {
   font-size: 75px;
+}
+
+.jumbotron-blue {
+  color: #337AB7;
 }

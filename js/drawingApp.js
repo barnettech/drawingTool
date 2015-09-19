@@ -6,12 +6,14 @@ $( document ).ready(function() {
   var ctx = c1.getContext("2d");
   ctx.beginPath();
   ctx.arc(95,100,40,0,2*Math.PI);
+  ctx.strokeStyle = '#337AB7';
   ctx.stroke();
 
   // Draw a square.
   var c2 = document.getElementById("myCanvas2");
   var ctx = c2.getContext("2d");
   ctx.rect(50, 50, 100, 100);
+  ctx.strokeStyle = '#337AB7';
   ctx.stroke();
 
   // Draw a line.
@@ -20,7 +22,13 @@ $( document ).ready(function() {
   ctx.beginPath();
   ctx.moveTo(30, 100);
   ctx.lineTo(170, 100);
+  ctx.strokeStyle = '#337AB7';
   ctx.stroke();
+ 
+  $(".myCanvas").click(function() {
+    var drawingType = $(this).attr('id');
+    console.log(drawingType);
+  });
 
   document.getElementById("myMainCanvas").addEventListener("mousemove", ev_mousemove, false);
 });
