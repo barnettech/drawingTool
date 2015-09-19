@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/drawingApp.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="js/test2.js"></script>
+</head>
+
+<body onload="init()">
+<div class="sidebar-left">
+  <canvas class="myCanvas" id="myCanvas1" width="200" height="200">
+  Your browser does not support the HTML5 canvas tag.</canvas>
+  <canvas class="myCanvas" id="myCanvas2" width="200" height="200">
+  Your browser does not support the HTML5 canvas tag.</canvas>
+  <canvas class="myCanvas" id="myCanvas3" width="200" height="200">
+  Your browser does not support the HTML5 canvas tag.</canvas>
+  <div class="myCanvas myCanvasFreehandDraw" id="myCanvas4">
+    <a href="#">
+          <span class="glyphicon glyphicon-pencil"></span>
+    </a>
+  </div>
+</div>
+
+<div class="main-content">
+  <div class="container">
+    <h1 class="jumbotron jumbotron-blue">Make a JavaScript/Canvas drawing Tool</h1>
+    <canvas class="myDrawingCanvasArea" id="can" width="1000" height="1000" style="border:1px solid #d3d3d3;">
+    Your browser does not support the HTML5 canvas tag.</canvas>
+  </div>
+
+
+    <div style="position:absolute;top:12%;left:43%;">Choose Color</div>
+    <div style="position:absolute;top:15%;left:45%;width:10px;height:10px;background:green;" id="green" onclick="color(this)"></div>
+    <div style="position:absolute;top:15%;left:46%;width:10px;height:10px;background:blue;" id="blue" onclick="color(this)"></div>
+    <div style="position:absolute;top:15%;left:47%;width:10px;height:10px;background:red;" id="red" onclick="color(this)"></div>
+    <div style="position:absolute;top:17%;left:45%;width:10px;height:10px;background:yellow;" id="yellow" onclick="color(this)"></div>
+    <div style="position:absolute;top:17%;left:46%;width:10px;height:10px;background:orange;" id="orange" onclick="color(this)"></div>
+    <div style="position:absolute;top:17%;left:47%;width:10px;height:10px;background:black;" id="black" onclick="color(this)"></div>
+    <div style="position:absolute;top:20%;left:43%;">Eraser</div>
+    <div style="position:absolute;top:22%;left:45%;width:15px;height:15px;background:white;border:2px solid;" id="white" onclick="color(this)"></div>
+    <img id="canvasimg" style="position:absolute;top:10%;left:52%;" style="display:none;">
+    <input type="button" value="save" id="btn" size="30" onclick="save()" style="position:absolute;top:55%;left:10%;">
+    <input type="button" value="clear" id="clr" size="23" onclick="erase()" style="position:absolute;top:55%;left:15%;">
+</div>
+</body>
+</html>
