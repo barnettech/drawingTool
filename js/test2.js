@@ -7,7 +7,8 @@ var canvas, ctx, flag = false,
     rect = {},
     drawingType,
     boxes = [],
-    currObj = 0;
+    currObj = 0,
+    theColor = '#337AB7',
     dot_flag = false;
 
 
@@ -72,25 +73,25 @@ function init() {
 function color(obj) {
     switch (obj.id) {
         case "green":
-            x = "green";
+            theColor = "green";
             break;
         case "blue":
-            x = "blue";
+            theColor = "blue";
             break;
         case "red":
-            x = "red";
+            theColor = "red";
             break;
         case "yellow":
-            x = "yellow";
+            theColor = "yellow";
             break;
         case "orange":
-            x = "orange";
+            theColor = "orange";
             break;
         case "black":
-            x = "black";
+            theColor = "black";
             break;
         case "white":
-            x = "white";
+            theColor = "white";
             break;
     }
     if (x == "white") y = 14;
@@ -102,7 +103,7 @@ function draw() {
     ctx.beginPath();
     ctx.moveTo(prevX, prevY);
     ctx.lineTo(currX, currY);
-    ctx.strokeStyle = x;
+    ctx.strokeStyle = theColor;
     ctx.lineWidth = y;
     ctx.stroke();
     ctx.closePath();
@@ -123,14 +124,16 @@ function drawSquare() {
   rect.w = prevX; 
   rect.h = prevY;
   //rect.fill = fill;
+  ctx.fillStyle = theColor; 
   boxes[currObj] = rect;
   ctx.fillRect(prevX, prevY, currX, currY);
 }
 
 function drawCircle() {
   ctx.beginPath();
-  //ctx.arc(prevX, prevY, 0, 70, 2 * Math.PI);
   ctx.arc(prevX, prevY, Math.abs(prevY-currY), 5, 44 * Math.PI);
+  ctx.fillStyle = theColor; 
+  ctx.fill();
   ctx.stroke();
 }
 
