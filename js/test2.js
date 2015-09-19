@@ -7,6 +7,7 @@ var canvas, ctx, flag = false,
     rect = {},
     drawingType,
     boxes = [],
+    currObj = 0;
     dot_flag = false;
 
 
@@ -42,7 +43,9 @@ $( document ).ready(function() {
 
   $(".myCanvas").click(function() {
     drawingType = $(this).attr('id');
-    console.log(drawingType);
+    if(drawingType == 'myCanvasTrash') {
+      erase();
+    }
   });
 });
 
@@ -105,7 +108,22 @@ function draw() {
     ctx.closePath();
 }
 
+function Box() {
+  this.x = 0;
+  this.y = 0;
+  this.w = 1; // default width and height?
+  this.h = 1;
+  this.fill = '#444444';
+}
+
 function drawSquare() {
+  var rect = new Box;
+  rect.x = currX;
+  rect.y = currY;
+  rect.w = prevX; 
+  rect.h = prevY;
+  //rect.fill = fill;
+  boxes[currObj] = rect;
   ctx.fillRect(prevX, prevY, currX, currY);
 }
 
@@ -122,8 +140,11 @@ function drawLine() {
 
 
 function erase() {
-    ctx.clearRect(0, 0, w, h);
-    document.getElementById("canvasimg").style.display = "none";
+    ctx.clearRect(boxes[currObj].w, boxes[currObj].h, boxes[currObj].x, boxes[currObj].y);
+    if(currObj !=0) {
+      currObj = currObj - 1;
+    }
+
 }
 
 function save() {
@@ -201,6 +222,7 @@ function findxy(res, e, drawingType) {
     if (res == 'down') {
       prevX = e.clientX - canvas.offsetLeft;
       prevY = e.clientY - canvas.offsetTop;
+      currObj = currObj + 1;
       drag = true;
     }
     if (res == 'up' || res == "out") {
@@ -210,7 +232,6 @@ function findxy(res, e, drawingType) {
       if (drag) {
         currX = e.clientX - canvas.offsetLeft;
         currY = e.clientY - canvas.offsetTop;
-        //ctx.clearRect(0,0,canvas.width,canvas.height);
         drawSquare();
       }
     }
