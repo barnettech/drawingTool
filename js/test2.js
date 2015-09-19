@@ -48,6 +48,9 @@ $( document ).ready(function() {
     if(drawingType == 'myCanvasTrash') {
       erase();
     }
+    if(drawingType == 'myCanvasRepeat') {
+      redo();
+    }
   });
 });
 
@@ -186,6 +189,36 @@ function erase() {
       currObj = currObj - 1;
     }
 
+}
+
+function redo() {
+  console.log(currObj);
+  if(boxes[currObj].type == 'rectangle') {
+    ctx.fillRect(boxes[currObj].w,boxes[currObj].h, boxes[currObj].x, boxes[currObj].y);
+  }
+  else if(boxes[currObj].type == 'circle') {
+    ctx.beginPath();
+    ctx.arc(boxes[currObj].w, boxes[currObj].h, Math.abs(boxes[currObj].h-boxes[currObj].w), 5, 44 * Math.PI);
+    ctx.fillStyle = 'white';
+    ctx.lineWidth = 10;
+    ctx.fillStyle = theColor;
+    ctx.strokeStyle = theColor;
+    ctx.fill();
+    ctx.stroke();
+  }
+  else if(boxes[currObj].type == 'lines') {
+    ctx.beginPath();
+    ctx.moveTo(boxes[currObj].w, boxes[currObj].h);
+    ctx.lineTo(boxes[currObj].x, boxes[currObj].y);
+    ctx.strokeStyle = theColor;
+    ctx.lineWidth = y;
+    ctx.stroke();
+    ctx.closePath();
+  }
+  if(currObj != boxes.length-1) {
+      console.log(boxes.length);
+      currObj = currObj + 1;
+  }
 }
 
 function save() {
