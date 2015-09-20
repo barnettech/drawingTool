@@ -1,26 +1,43 @@
 .sidebar-left {
-  height: 700px;
+  height: 100%;
   width: 200px;
   float: left;
 }
 
 .myCanvas {
   float: left;
+  clear: left;
   border: 1px solid #d3d3d3;
 }
+
+.choose-color {
+  margin-top: 15px;
+  width: 102px;
+}
+
+.color-boxes {
+  float: left;
+}
+
 #myCanvas2 {
 }
 
 .myCanvasFreehandDraw {
-  height: 150px;
-  width: 152px;
-  padding-top: 30px;
-  padding-left: 30px;
+  height: 100px;
+  width: 102px;
+  padding-top: 25px;
+  padding-left: 25px;
   border: 1px solid #d3d3d3;
 }
 
 .glyphicon-pencil, .glyphicon-fullscreen, .glyphicon-trash, .glyphicon-repeat {
-  font-size: 75px;
+  font-size: 45px;
+}
+
+.jumbotron {
+  float: left;
+  width: 70%;
+  clear: right;
 }
 
 .jumbotron-blue {
