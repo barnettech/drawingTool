@@ -260,8 +260,8 @@ function findxy(res, e, drawingType) {
     }
     if (res == 'move') {
       if (drag) {
-        currX = e.clientX - canvas.offsetLeft;
-        currY = e.clientY - canvas.offsetTop;
+        currX = (e.clientX - canvas.offsetLeft) - prevX;
+        currY = (e.clientY - canvas.offsetTop) - prevY;
         drawSquare();
       }
     }
