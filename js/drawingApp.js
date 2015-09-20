@@ -191,6 +191,7 @@ function redo() {
   else if(boxes[currObj].type == 'circle') {
     ctx.beginPath();
     ctx.arc(boxes[currObj].w, boxes[currObj].h, Math.abs(boxes[currObj].h - boxes[currObj].y), 5, 44 * Math.PI);
+    ctx.lineWidth = y;
     ctx.fillStyle = theColor; 
     ctx.fill();
     ctx.stroke();
