@@ -14,8 +14,6 @@ var canvas, ctx, flag = false,
     dot_flag = false;
 
 $( document ).ready(function() {
-  
- 
   // Draw a circle. 
   var c1 = document.getElementById("myCanvas1");
   var ctx = c1.getContext("2d");
@@ -211,46 +209,7 @@ function redo() {
   }
 }
 
-/*function save() {
-    document.getElementById("canvasimg").style.border = "2px solid";
-    var dataURL = canvas.toDataURL();
-    document.getElementById("canvasimg").src = dataURL;
-    document.getElementById("canvasimg").style.display = "inline";
-}*/
-
 function findxy(res, e, drawingType) {
-  if(drawingType == 'myCanvas4') {
-    if (res == 'down') {
-        prevX = currX;
-        prevY = currY;
-        currX = e.clientX - canvas.offsetLeft;
-        currY = e.clientY - canvas.offsetTop;
-
-        flag = true;
-        dot_flag = true;
-        if (dot_flag) {
-            ctx.beginPath();
-            ctx.fillStyle = x;
-            ctx.fillRect(currX, currY, 2, 2);
-            ctx.closePath();
-            dot_flag = false;
-        }
-    }
-    if (res == 'up' || res == "out") {
-        flag = false;
-    }
-    if (res == 'move') {
-        if (flag) {
-            prevX = currX;
-            prevY = currY;
-            currX = e.clientX - canvas.offsetLeft;
-            currY = e.clientY - canvas.offsetTop;
-            currObj = currObj + 1;
-            draw();
-        }
-    }
-  }
-
   if(drawingType == 'myCanvas0') {
     if (res == 'down') {
       drag = true;
@@ -335,23 +294,35 @@ function findxy(res, e, drawingType) {
     }
   }
 
-}
-
-function findxyShape(res, e) {
+  if(drawingType == 'myCanvas4') {
     if (res == 'down') {
-      prevX = e.clientX - canvas.offsetLeft;
-      prevY = e.clientY - canvas.offsetTop;
-      drag = true;
-    }
-    if (res == 'up' || res == "out") {
-      drag = false;
-    }
-    if (res == 'move') {
-      if (drag) {
+        prevX = currX;
+        prevY = currY;
         currX = e.clientX - canvas.offsetLeft;
         currY = e.clientY - canvas.offsetTop;
-        //ctx.clearRect(0,0,canvas.width,canvas.height);
-        drawSquare();
-      }
+
+        flag = true;
+        dot_flag = true;
+        if (dot_flag) {
+            ctx.beginPath();
+            ctx.fillStyle = x;
+            ctx.fillRect(currX, currY, 2, 2);
+            ctx.closePath();
+            dot_flag = false;
+        }
     }
+    if (res == 'up' || res == "out") {
+        flag = false;
+    }
+    if (res == 'move') {
+        if (flag) {
+            prevX = currX;
+            prevY = currY;
+            currX = e.clientX - canvas.offsetLeft;
+            currY = e.clientY - canvas.offsetTop;
+            currObj = currObj + 1;
+            draw();
+        }
+    }
+  }
 }
