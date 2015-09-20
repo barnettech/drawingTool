@@ -9,11 +9,9 @@ var canvas, ctx, flag = false,
     boxes = [],
     currObj = 0,
     theColor = '#337AB7',
+    x = "black",
+    y = 2,
     dot_flag = false;
-
-
-var x = "black",
-    y = 2;
 
 $( document ).ready(function() {
   
@@ -102,6 +100,15 @@ function color(obj) {
 
 }
 
+function Shape() {
+  this.x = 0;
+  this.y = 0;
+  this.w = 1;
+  this.h = 1;
+  this.type = 'rectangle';
+  this.fill = '#444444';
+}
+
 function draw() {
     var line = new Shape;
     line.x = currX;
@@ -118,15 +125,6 @@ function draw() {
     ctx.lineWidth = y;
     ctx.stroke();
     ctx.closePath();
-}
-
-function Shape() {
-  this.x = 0;
-  this.y = 0;
-  this.w = 1;
-  this.h = 1;
-  this.type = 'rectangle';
-  this.fill = '#444444';
 }
 
 function drawSquare() {
