@@ -113,6 +113,7 @@ function draw() {
     line.y = currY;
     line.w = prevX; 
     line.h = prevY;
+    line.theColor = theColor;
     line.type = 'lines';
     boxes[currObj] = line;
 
@@ -131,6 +132,7 @@ function drawSquare() {
   rect.y = currY;
   rect.w = prevX; 
   rect.h = prevY;
+  rect.theColor = theColor;
   rect.type = 'rectangle';
   ctx.fillStyle = theColor; 
   boxes[currObj] = rect;
@@ -143,6 +145,7 @@ function drawCircle() {
   cir.y = currY;
   cir.w = prevX; 
   cir.h = prevY;
+  cir.theColor = theColor;
   cir.type = 'circle';
   boxes[currObj] = cir;
   
@@ -185,6 +188,7 @@ function erase() {
 }
 
 function redo() {
+  theColor = boxes[currObj].theColor;
   if(boxes[currObj].type == 'rectangle') {
     ctx.fillRect(boxes[currObj].w,boxes[currObj].h, boxes[currObj].x, boxes[currObj].y);
   }
