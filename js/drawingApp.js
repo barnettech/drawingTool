@@ -44,7 +44,6 @@ $( document ).ready(function() {
 
   $(".myCanvas").click(function() {
     drawingType = $(this).attr('id');
-    console.log(drawingType);
     if(drawingType == 'myCanvasTrash') {
       erase();
     }
@@ -150,7 +149,6 @@ function drawCircle() {
   cir.h = prevY;
   cir.type = 'circle';
   boxes[currObj] = cir;
-  console.log(prevX + ' ,' + prevY + ' ,' + currX + ' ,' + currY);
   
   ctx.beginPath();
   ctx.arc(prevX, prevY, Math.abs(prevY-currY), 5, 44 * Math.PI);
@@ -191,13 +189,11 @@ function erase() {
 }
 
 function redo() {
-  console.log(currObj);
   if(boxes[currObj].type == 'rectangle') {
     ctx.fillRect(boxes[currObj].w,boxes[currObj].h, boxes[currObj].x, boxes[currObj].y);
   }
   else if(boxes[currObj].type == 'circle') {
     ctx.beginPath();
-    console.log(boxes[currObj]);
     ctx.arc(boxes[currObj].w, boxes[currObj].h, Math.abs(boxes[currObj].h - boxes[currObj].y), 5, 44 * Math.PI);
     ctx.fillStyle = theColor; 
     ctx.fill();
@@ -213,7 +209,6 @@ function redo() {
     ctx.closePath();
   }
   if(currObj != boxes.length-1) {
-      console.log(boxes.length);
       currObj = currObj + 1;
   }
 }
