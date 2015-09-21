@@ -14,7 +14,7 @@ var canvas, ctx, flag = false,
     dot_flag = false;
 
 $( document ).ready(function() {
-  // Draw a circle. 
+  // Draw a circle in the left sidebar toolbar. 
   var c1 = document.getElementById("myCanvas1");
   var ctx = c1.getContext("2d");
   ctx.beginPath();
@@ -22,14 +22,14 @@ $( document ).ready(function() {
   ctx.strokeStyle = '#337AB7';
   ctx.stroke();
 
-  // Draw a square.
+  // Draw a square in the left sidebar toolbar. 
   var c2 = document.getElementById("myCanvas2");
   var ctx = c2.getContext("2d");
   ctx.rect(20, 23, 55, 55);
   ctx.strokeStyle = '#337AB7';
   ctx.stroke();
 
-  // Draw a line.
+  // Draw a line in the left sidebar toolbar. 
   var c3 = document.getElementById("myCanvas3");
   var ctx = c3.getContext("2d");
   ctx.beginPath();
@@ -40,6 +40,10 @@ $( document ).ready(function() {
 
   $(".myCanvas").click(function() {
     drawingType = $(this).attr('id');
+    // Using JQuery here is nice, I can register a
+    // click on a class and get the id. The below
+    // if statements check if the user wants to delete
+    // or redo the last drawn element.
     if(drawingType == 'myCanvasTrash') {
       erase();
     }
@@ -50,11 +54,14 @@ $( document ).ready(function() {
 });
 
 function init() {
+    // Initialize the main drawing canvas.
     canvas = document.getElementById('can');
     ctx = canvas.getContext("2d");
     w = canvas.width;
     h = canvas.height;
 
+    // Initialize listening for mouse actions on the
+    // main canvas.
     canvas.addEventListener("mousemove", function (e) {
         findxy('move', e, drawingType)
     }, false);
@@ -69,6 +76,7 @@ function init() {
     }, false);
 }
 
+// Registers what color to draw with.
 function color(obj) {
     switch (obj.id) {
         case "green":
@@ -98,6 +106,8 @@ function color(obj) {
 
 }
 
+// A generic shape object, we'll use to store
+// shape data to later stuff into an array.
 function Shape() {
   this.x = 0;
   this.y = 0;
@@ -107,6 +117,7 @@ function Shape() {
   this.fill = '#444444';
 }
 
+// Function to freehand draw or draw lines.
 function draw() {
     var line = new Shape;
     line.x = currX;
@@ -126,6 +137,7 @@ function draw() {
     ctx.closePath();
 }
 
+// Function to draw squares.
 function drawSquare() {
   var rect = new Shape;
   rect.x = currX;
@@ -139,6 +151,7 @@ function drawSquare() {
   ctx.fillRect(prevX, prevY, currX, currY);
 }
 
+// Function to draw circles.
 function drawCircle() {
   var cir = new Shape;
   cir.x = currX;
@@ -156,7 +169,7 @@ function drawCircle() {
   ctx.stroke();
 }
 
-
+// Function to erase different types of drawing elements.
 function erase() {
     if(boxes[currObj].type == 'rectangle') {
       ctx.clearRect(boxes[currObj].w, boxes[currObj].h, boxes[currObj].x, boxes[currObj].y);
@@ -187,6 +200,7 @@ function erase() {
 
 }
 
+// Function to redraw an item, after it was previously erased.
 function redo() {
   theColor = boxes[currObj].theColor;
   if(boxes[currObj].type == 'rectangle') {
@@ -214,6 +228,9 @@ function redo() {
   }
 }
 
+// Main function to determine mouse data, and to send
+// off the data to create the requested drawing element
+// (square, circle, line, freehand draw).
 function findxy(res, e, drawingType) {
   if(drawingType == 'myCanvas0') {
     if (res == 'down') {
