@@ -204,6 +204,7 @@ function erase() {
 function redo() {
   theColor = boxes[currObj].theColor;
   if(boxes[currObj].type == 'rectangle') {
+    ctx.fillStyle = theColor; 
     ctx.fillRect(boxes[currObj].w,boxes[currObj].h, boxes[currObj].x, boxes[currObj].y);
   }
   else if(boxes[currObj].type == 'circle') {
